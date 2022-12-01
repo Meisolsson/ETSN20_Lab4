@@ -28,7 +28,7 @@ public class Grep {
         String fileName = args[2];
         boolean caseInsensitive = false;
         for (int i = 3; i < args.length; i++) {
-            if ("-o".equals(args[i])) {
+            if ("-i".equals(args[i])) {
                 caseInsensitive = true;
                 break;
             }
@@ -46,8 +46,7 @@ public class Grep {
             Matcher matcher = null;
             String temp;
 
-            while (reader.ready()) {
-                temp = reader.readLine();
+            while ((temp = reader.readLine()) != null) {
                 if (matcher == null) {
                     matcher = regexPattern.matcher(temp);
                 } else {
